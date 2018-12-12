@@ -4,13 +4,24 @@ Reads values from serial port, written to the port by Arduino.
  Must assign the correct port, see instructions below!
  */
 
+import ddf.minim.analysis.*;
+import ddf.minim.*;
 import processing.serial.*; //imports Serial library from Processing
+int ex1 = 268;
+int ex2 = 252;
+Minim minim;
+AudioSample snare1;
+
 
 Serial myPort; // creates object from Serial class
 int val=0; // creates variable for data coming from serial port
 
 void setup() {
-  size(400, 400);
+  size(600, 600, P3D);
+  minim = new Minim(this);
+
+  snare1 = minim.loadSample("Snare 1.mp3", 512);
+  if ( snare1 == null ) println("Didn't get snare1!");
   /*
    IMPORTANT: We must tell Processing which port to read from.
    Run the sketch and check your console to see the results of printArray(Serial.list());
@@ -27,23 +38,21 @@ void draw() {
   if ( myPort.available() > 0) { // If data is available,
     val = myPort.read(); // read it and store it in val
   }
+  if ( val == 115 ) {
+    snare1.trigger();
+    fill(255, 0, 0, 31);
+    ellipse(ex1, ex2, 100, 100);
+  }
 
-  //draws an ellipse that grows and shrinks in relation to val
-  background(255);
-  fill (0);
-  ellipse (width/2, height/2, val, val);
   println (val); //prints to Processing console
 }
 
-//import ddf.minim.analysis.*;
-//import ddf.minim.*;
+
 
 //float r = random(0,255);
-//int ex1 = 268;
-//int ex2 = 252;
 
-//Minim minim;
-//AudioSample snare1;
+
+
 //AudioSample snare2;
 //AudioSample snare3;
 //AudioSample snareSD;
@@ -58,8 +67,8 @@ void draw() {
 
 //void setup()
 //{
-//  size(600, 600, P3D);
-//  minim = new Minim(this);
+////  size(600, 600, P3D);
+////  minim = new Minim(this);
 
 //  snare1 = minim.loadSample("Snare 1.mp3", 512);
 //  if ( snare1 == null ) println("Didn't get snare1!");
@@ -96,12 +105,12 @@ void draw() {
 //   //use the mix buffer to draw the waveforms.
 //  for (int i = 0; i < sample1.bufferSize() - 1; i++)
 //  {
- 
+
 //    ellipse(142,183+sample1.mix.get(i+1)*150,50+sample1.mix.get(i+1)*250,50-sample1.mix.get(i+1)*150);
 //    ellipse(393,192,50+sample2.mix.get(i+1)*250,50+sample2.mix.get(i+1)*150);
 //    ellipse(150,350+sample3.mix.get(i+1)*150,50+sample3.mix.get(i+1)*150,50+sample3.mix.get(i+1)*150);
 //    ellipse(400,450-sample4.mix.get(i+1)*150,50+sample4.mix.get(i+1)*150,50+sample4.mix.get(i+1)*150);
-    
+
 //  }
 //}
 
@@ -112,19 +121,19 @@ void draw() {
 //  fill(255,0,0,31);
 //  ellipse(ex1,ex2,100,100);
 //  }
-  
+
 //  if( key == 'x' ) {
 //  snare2.trigger();
 //  fill(125,161,222,31);
 //  ellipse(ex1,ex2,100,100);
 //  }
-  
+
 //  if ( key == 'a' ){
 //  snare3.trigger();
 //  fill(175,234,203,31);
 //  ellipse(ex1,ex2,100,100);
 //  }
-  
+
 //  if ( key == 'z' ){
 //  snareSD.trigger();
 //  fill(234,221,175,31);
@@ -136,12 +145,12 @@ void draw() {
 //  fill(240,237,r,31);
 //  ellipse(ex1,ex2,100,100);
 //  }
-  
+
 //  //Stop Sample 1 from playing during other sample triggers
 //  if ( key == 'u' ){ 
 //    sample1.trigger();
 //  }else{
- 
+
 //  if ( key == 'i' ) 
 //  sample1.stop();
 //  if ( key == 'o' ) 
@@ -149,8 +158,8 @@ void draw() {
 //  if ( key == 'p' ) 
 //  sample1.stop();
 //  }
-  
-  
+
+
 //  //Stop Sample 2 from playing during other sample triggers
 //  if ( key == 'i' ){
 //    sample2.trigger();
@@ -163,7 +172,7 @@ void draw() {
 //  if ( key == 'p' ) 
 //  sample2.stop();
 //  }
-  
+
 //  //Stop Sample 3 from playing during other sample triggers
 //  if ( key == 'o' ){
 //    sample3.trigger();
@@ -176,7 +185,7 @@ void draw() {
 //  if ( key == 'p' ) 
 //  sample3.stop();  
 //}
-  
+
 // //Stop Sample 4 from playing during other sample triggers 
 //  if ( key == 'p' ){
 //    sample4.trigger();
@@ -189,11 +198,11 @@ void draw() {
 //  if ( key == 'u' )
 //  sample4.stop();  
 //}
-  
-  
+
+
 //  if ( key == 'd' ) BD.trigger();
 //  if ( key == 'c' ) kick.trigger();
 //  if ( key == 'f' ) snap.trigger();
-  
-  
+
+
 //}
