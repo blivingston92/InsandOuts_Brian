@@ -11,6 +11,17 @@ int ex1 = 268;
 int ex2 = 252;
 Minim minim;
 AudioSample snare1;
+AudioSample snare2;
+AudioSample snare3;
+AudioSample snareSD;
+AudioSample hihat;
+AudioSample sample1;
+AudioSample sample2;
+AudioSample sample3;
+AudioSample sample4;
+AudioSample BD;
+AudioSample kick;
+AudioSample snap;
 
 
 Serial myPort; // creates object from Serial class
@@ -29,22 +40,104 @@ void setup() {
    On my Mac, it is port 1 and so I open Serial.list()[1].
    */
 
-  printArray(Serial.list()); // this line prints the port list to the console
+  //printArray(Serial.list()); // this line prints the port list to the console
   String portName = Serial.list()[1]; //change the number in the [] for the port you need
   myPort = new Serial(this, portName, 9600);
 }
 
 void draw() {
   if ( myPort.available() > 0) { // If data is available,
-    val = myPort.read(); // read it and store it in val
+    val = myPort.read(); // read it and store it in val0
+  
+  //if ( val == 1 ) {
+  //  snare2.trigger();
+  //  fill(255, 0, 0, 31);
+  //  ellipse(ex1, ex2, 100, 100);
+  //}
   }
-  if ( val == 115 ) {
-    snare1.trigger();
-    fill(255, 0, 0, 31);
-    ellipse(ex1, ex2, 100, 100);
+  println (val); //prints to Processing console
+
+  //if( val == 2 ) {
+  //snare2.trigger();
+  //fill(125,161,222,31);
+  //ellipse(ex1,ex2,100,100);
+  //}
+
+//  if ( val == 3 ){
+//  snare3.trigger();
+//  fill(175,234,203,31);
+//  ellipse(ex1,ex2,100,100);
+//  }
+
+//  if ( val == 4 ){
+//  snareSD.trigger();
+//  fill(234,221,175,31);
+//  ellipse(ex1,ex2,100,100);
+//  }
+
+//  if ( val == 7 ){
+//  hihat.trigger();
+//  fill(240,237,r,31);
+//  ellipse(ex1,ex2,100,100);
+//  }
+
+  //Stop Sample 1 from playing during other sample triggers
+  if ( val == 1 ){ 
+    sample1.trigger();
+  }else{
+
+  if ( val == 2 ) 
+  sample1.stop();
+  if ( val == 3 ) 
+  sample1.stop();
+  if ( val == 4 ) 
+  sample1.stop();
   }
 
-  println (val); //prints to Processing console
+
+  //Stop Sample 2 from playing during other sample triggers
+  if ( val == 2 ){
+    sample2.trigger();
+  }
+  else{
+  if ( val == 1 ) 
+  sample2.stop();
+  if ( val == 3 ) 
+  sample2.stop();
+  if ( val == 4 ) 
+  sample2.stop();
+  }
+
+  //Stop Sample 3 from playing during other sample triggers
+  if ( val == 3 ){
+    sample3.trigger();
+  }
+  else{
+  if ( val == 2 ) 
+  sample3.stop();
+  if ( val == 1 ) 
+  sample3.stop();
+  if ( val == 4 ) 
+  sample3.stop();  
+}
+
+ //Stop Sample 4 from playing during other sample triggers 
+  if ( val == 4 ){
+    sample4.trigger();
+  }
+  else{
+  if ( val == 2 ) 
+  sample4.stop();
+  if ( val == 3 ) 
+  sample4.stop();
+  if ( val == 1 )
+  sample4.stop();  
+}
+
+
+//  if ( key == 'd' ) BD.trigger();
+//  if ( key == 5 ) kick.trigger();
+//  if ( key == 6 ) snap.trigger();
 }
 
 
@@ -53,17 +146,7 @@ void draw() {
 
 
 
-//AudioSample snare2;
-//AudioSample snare3;
-//AudioSample snareSD;
-//AudioSample hihat;
-//AudioSample sample1;
-//AudioSample sample2;
-//AudioSample sample3;
-//AudioSample sample4;
-//AudioSample BD;
-//AudioSample kick;
-//AudioSample snap;
+
 
 //void setup()
 //{
@@ -201,8 +284,8 @@ void draw() {
 
 
 //  if ( key == 'd' ) BD.trigger();
-//  if ( key == 'c' ) kick.trigger();
-//  if ( key == 'f' ) snap.trigger();
+//  if ( key == 5 ) kick.trigger();
+//  if ( key == 6 ) snap.trigger();
 
 
 //}
