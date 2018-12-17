@@ -22,7 +22,7 @@ AudioSample sample4;
 AudioSample BD;
 AudioSample kick;
 AudioSample snap;
-
+float r = random(0,255);
 
 Serial myPort; // creates object from Serial class
 int val=0; // creates variable for data coming from serial port
@@ -31,8 +31,20 @@ void setup() {
   size(600, 600, P3D);
   minim = new Minim(this);
 
-  snare1 = minim.loadSample("Snare 1.mp3", 512);
-  if ( snare1 == null ) println("Didn't get snare1!");
+  
+  sample1 = minim.loadSample("PA Guitar Electric6 Fm.mp3", 400);
+  if ( sample1 == null )println("Didn't get sample1!");
+  sample2 = minim.loadSample("07 070 Ebmaj.mp3", 400);
+  if ( sample2 == null )println("Didn't get sample2!");
+  sample3 = minim.loadSample("18_DropLead.mp3", 400);
+  if ( sample3 == null )println("Didn't get sample3!");
+  sample4 = minim.loadSample("PA Melody Loop30 E.mp3", 400);
+  if ( sample4 == null )println("Didn't get sample4!");
+  kick = minim.loadSample("Kick 5.mp3", 512);
+  if ( kick == null )println("Didn't get kick!");
+  snap = minim.loadSample("KK Kit 06 Snap 1.mp3", 512);
+  if ( snap == null )println("Didn't get snap!");
+  
   /*
    IMPORTANT: We must tell Processing which port to read from.
    Run the sketch and check your console to see the results of printArray(Serial.list());
@@ -75,11 +87,11 @@ void draw() {
 //  ellipse(ex1,ex2,100,100);
 //  }
 
-//  if ( val == 7 ){
-//  hihat.trigger();
-//  fill(240,237,r,31);
-//  ellipse(ex1,ex2,100,100);
-//  }
+  if ( val == 7 ){
+  hihat.trigger();
+  fill(240,237,r,31);
+  ellipse(ex1,ex2,100,100);
+  }
 
   //Stop Sample 1 from playing during other sample triggers
   if ( val == 1 ){ 
@@ -136,8 +148,8 @@ void draw() {
 
 
 //  if ( key == 'd' ) BD.trigger();
-//  if ( key == 5 ) kick.trigger();
-//  if ( key == 6 ) snap.trigger();
+  if ( val == 5 ) kick.trigger();
+  if ( val == 6 ) snap.trigger();
 }
 
 
