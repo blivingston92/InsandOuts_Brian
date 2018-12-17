@@ -40,33 +40,33 @@ void loop() {
   val7 = digitalRead(BUTTON7);
   
   if (val1 == 1){
-    //Serial.write(1);
-    Serial.println(val1);
+    Serial.write(1);
+//    Serial.println(1);
   }
 
   if (val2 == 1){
-    //Serial.write(2);
-    Serial.println(val2);
+    Serial.write(2);
+//    Serial.println(2);
   }
-  if (val3 == 3){
-    //Serial.write(3);
-    Serial.println(val3);
+  if (val3 == 1){
+    Serial.write(3);
+//    Serial.println(3);
   }
-  if (val4 == 4){
-    //Serial.write(4);
-    Serial.println(val4);
+  if (val4 == 1){
+    Serial.write(4);
+//    Serial.println(4);
   }
-  if (val5 == 5){
-    //Serial.write(5);
-    Serial.println(val5);
+  if (val5 == 1){
+    Serial.write(5);
+//    Serial.println(5);
   }
-  if (val6 == 6){
-    //Serial.write(6);
-    Serial.println(val6);
+  if (val6 == 1){
+    Serial.write(6);
+//    Serial.println(6);
   }
-  if (val7 == 7){
-    //Serial.write(7);
-    Serial.println(val7);
+  if (val7 == 1){
+    Serial.write(7);
+//    Serial.println(7);
   }
 //  
 //  delay(100); // Wait 100 milliseconds
@@ -76,4 +76,5 @@ void loop() {
 //  //Serial. println(val); //to send human-readable data to Arduino monitor
 //  Serial.write(val1);  //to send binary data to Processing
 }
+
 
