@@ -1,0 +1,91 @@
+/*Wrestler announcement  Adlib Generator
+
+Author:  Brian Livingston
+Editors: Brian Livingston 
+         Michael Paul
+
+*/
+
+int x = 200;
+// intro, reputation and name arrays
+String [] intro = {"Coming to the stage", "Hailing from OUTER darkness", "Entering the ring", "The GREAT from Trenton state"};
+String [] rep = {"the UNMERCIFUL", "the DESTROYER of worlds", "the CRUSHER of continants", "the MARSHAL of mayhem"};
+String [] name = {"MARK","TOD","BART","RALPH","PERSIVUL","MIKE","MARK","PAUL","KATE","ERIC","CATHY"};
+
+String state;
+
+int r = 20;
+int g = 20;
+int b = 100;
+int t = 100;
+int size = 20;//used for size of text
+
+//searches and selects randomly from arrays
+int i; //= (int(random(4)));
+int re; //= (int(random(4)));
+int n; //= (int(random(11)));
+
+void setup(){
+  size(400,400);
+  background(r,g,b,t);//background color
+  state = "Begin";
+  rectMode(CENTER);
+}
+
+void draw(){
+  //println(mouseX,mouseY);
+  background(255);
+  if(state == "Begin"){
+    beginScreen();
+  }else if(state == "Generate"){
+    generate();
+  }else if(state == "Reset"){
+    reset(); 
+  }
+    
+  }
+  
+  
+  void beginScreen(){
+    fill(255);
+    rect(200,200,200,150);
+    textAlign(CENTER);
+    textSize(25);
+    fill(255,28,71,100);
+    text("Tap to begin", 200,200);
+    i = (int(random(4)));
+    re = (int(random(4)));
+    n = (int(random(11)));
+  }
+  
+  void generate(){
+    
+  background(255);
+  textSize(size);
+  textAlign(CENTER);
+  text(intro[i]+",", x, 100);
+  text(rep[re]+",", x, 150);
+  textSize(size+20);
+  text(name[n]+"!", x, 200);
+  }
+  
+  
+  
+  void reset(){
+    background(r,g,b,t);
+    text("Again?",x,200);
+  
+  }
+  
+  
+  void mousePressed(){
+    if(state == "Begin"){
+      state = "Generate";
+    }else if(state == "Generate"){
+      state = "Reset";
+    }else if(state == "Reset"){
+      state = "Begin";
+    }
+  }
+  
+  
