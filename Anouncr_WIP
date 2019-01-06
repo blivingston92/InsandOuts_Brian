@@ -6,11 +6,12 @@ Editors: Brian Livingston
 
 */
 
-int x = 200;
+int x = 300;
 // intro, reputation and name arrays
-String [] intro = {"Coming to the stage", "Hailing from OUTER darkness", "Entering the ring", "The GREAT from Trenton state"};
-String [] rep = {"the UNMERCIFUL", "the DESTROYER of worlds", "the CRUSHER of continants", "the MARSHAL of mayhem"};
-String [] name = {"MARK","TOD","BART","RALPH","PERSIVUL","MIKE","MARK","PAUL","KATE","ERIC","CATHY"};
+String [] intro = {"Coming to the\nstage", "Hailing from\nOUTER darkness", "Entering the ring", "The GREAT\nfrom\nTrenton state"};
+String [] rep = {"the UNMERCIFUL", "the DESTROYER\n of worlds", "the CRUSHER\nof continants", "the MARSHAL\nof mayhem"};
+String [] name = {"LEE","TOD","BART","RALPH","PERSIVUL","MIKE","MARK",
+                  "PAUL","KATE","ERIC","CATHY", "RON", "RYAN", "JACK", "Phoebe"};
 
 String state;
 
@@ -26,19 +27,28 @@ int re; //= (int(random(4)));
 int n; //= (int(random(11)));
 
 void setup(){
-  size(400,400);
+  size(600,600);
   background(r,g,b,t);//background color
-  state = "Begin";
+  state = "Splash";
   rectMode(CENTER);
+  ellipse(mouseX, mouseY,40,40);
 }
 
 void draw(){
   //println(mouseX,mouseY);
   background(255);
-  if(state == "Begin"){
+  if(state == "Splash"){
+    splashScreen();
+  }else if(state == "How"){
+    howToPlay();
+  }else if(state == "Begin"){
     beginScreen();
-  }else if(state == "Generate"){
-    generate();
+  }else if(state == "Generate1"){
+    generate1();
+  }else if(state == "Generate2"){
+    generate2();
+  }else if(state == "Generate3"){
+    generate3();
   }else if(state == "Reset"){
     reset(); 
   }
@@ -48,44 +58,88 @@ void draw(){
   
   void beginScreen(){
     fill(255);
-    rect(200,200,200,150);
+    rect(300,300,300,225);
     textAlign(CENTER);
     textSize(25);
-    fill(255,28,71,100);
-    text("Tap to begin", 200,200);
+    fill(0);
+    text("Tap to begin", 300,300);
     i = (int(random(4)));
     re = (int(random(4)));
-    n = (int(random(11)));
+    n = (int(random(14)));
   }
   
-  void generate(){
-    
+  void splashScreen(){
+    background(255);
+    textSize(25);
+    fill(0);
+    textAlign(CENTER);
+    text("The Anouncer", 300,50);
+    text("Created by\nBrian Livingston",300,100);
+    text("Edited by\nBrian Livingston\nMichael Paul", 300, 230);
+    text("Special thanks\nto\nAhmed Clark\nJamar Sanderson", 300, 430);
+  }
+  
+  void howToPlay(){
+    background(255);
+    textSize(size);
+    textAlign(CENTER);
+    text("Your a\nring announcer, aspiring", 300, 50);
+  }
+  
+  void generate1(){
   background(255);
-  textSize(size);
+  textSize(size+40);
   textAlign(CENTER);
-  text(intro[i]+",", x, 100);
-  text(rep[re]+",", x, 150);
-  textSize(size+20);
-  text(name[n]+"!", x, 200);
+  text(intro[i]+",", x, 175);
   }
   
+  void generate2(){
+  background(255);
+  textSize(size+40);
+  textAlign(CENTER);
+  text(rep[re]+",", x, 250);
+  }
   
+  void generate3(){
+  background(255);
+  textSize(size+40);
+  textAlign(CENTER);
+  text(name[n]+"!", x, 400);
+  }
   
   void reset(){
     background(r,g,b,t);
-    text("Again?",x,200);
+    text("Again?",x,300);
+    fill(255);
+    rect(300,100,100,100);
+    if((mouseX > 300) && (mouseX < 400) && 
+    (mouseY > 50) && (mouseY < 100)){
+      state = "Generate1";
+    }
   
   }
   
   
   void mousePressed(){
-    if(state == "Begin"){
-      state = "Generate";
-    }else if(state == "Generate"){
-      state = "Reset";
-    }else if(state == "Reset"){
+    if(state == "Splash"){
+      state = "How";
+    }else if(state == "How"){
       state = "Begin";
-    }
+    }else if(state == "Begin"){
+      state = "Generate1";
+    }else if(state == "Generate1"){
+      state = "Generate2";
+    }else if(state == "Generate2"){
+      state = "Generate3";
+    }else if(state == "Generate3"){
+      state = "Reset";
+      }
+   // }else if(state == "Reset"){
+     // state = "Begin";
+    //}
   }
+  
+  
+
   
   
