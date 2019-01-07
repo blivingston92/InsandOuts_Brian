@@ -11,9 +11,30 @@ int x = 300;
 String [] intro = {"Coming to the\nstage", "Hailing from\nOUTER darkness", "Entering the ring", "The GREAT\nfrom\nTrenton state"};
 String [] rep = {"the UNMERCIFUL", "the DESTROYER\n of worlds", "the CRUSHER\nof continants", "the MARSHAL\nof mayhem"};
 String [] name = {"LEE","TOD","BART","RALPH","PERSIVUL","MIKE","MARK",
-                  "PAUL","KATE","ERIC","CATHY", "RON", "RYAN", "JACK", "Phoebe"};
+                  "PAUL","KATE","ERIC","CATHY", "RON", "RYAN", "JACK", "PHOEBE"};
 
 String state;
+String howTo = ("Your a\nring announcer, (aspiring).\n " +
+     "You finally found\na venue that will let \nyou get some chops at your dream job." +
+     "You will be introducing people who \nhavnt made a name for themselves...literally." +
+     "If you can make them sound great\n your on your way." +
+     "You will be able to tell \nif you have done well because\n" +
+     "you will be asked to\n announce them as if they are\n" +
+     "the best the business has to offer." +
+     "if the crowd laughs then your introduction\n was so amazing that the persons\n" +
+     "parent given name will sound ridiculous." +
+     "When the crowd laughs you get a point." +
+     "if you get 10 points\n you win the round." +
+     "There ars three rounds and you are competing against\n" +
+     "other anouncers." +
+     "Say the two prompts \nfrom the prompt screens and then finally the name." +
+     "Wait for laughter and if you get some\n you get a point." +
+     "The most points out of 10\n wins the round." +
+     "The most rounds won out of three\n wins the opportunity\n" +
+     "to work in as a real anouncer." +
+     "May the best announcer win.");
+
+
 
 int r = 20;
 int g = 20;
@@ -82,8 +103,9 @@ void draw(){
   void howToPlay(){
     background(255);
     textSize(size);
-    textAlign(CENTER);
-    text("Your a\nring announcer, aspiring", 300, 50);
+    //textAlign(CENTER);
+    fill(57,255,255,120);
+    text(howTo,275,300,300,600);
   }
   
   void generate1(){
@@ -97,14 +119,14 @@ void draw(){
   background(255);
   textSize(size+40);
   textAlign(CENTER);
-  text(rep[re]+",", x, 250);
+  text(rep[re]+",", x, 350);
   }
   
   void generate3(){
   background(255);
   textSize(size+40);
   textAlign(CENTER);
-  text(name[n]+"!", x, 400);
+  text(name[n]+"!", x, 250);
   }
   
   void reset(){
@@ -114,7 +136,7 @@ void draw(){
     rect(300,100,100,100);
     if((mouseX > 300) && (mouseX < 400) && 
     (mouseY > 50) && (mouseY < 100)){
-      state = "Generate1";
+      state = "Begin";
     }
   
   }
@@ -141,5 +163,4 @@ void draw(){
   
   
 
-  
   
