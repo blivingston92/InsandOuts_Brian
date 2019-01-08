@@ -1,4 +1,5 @@
-/*Wrestler announcement  Adlib Generator
+
+  /*Wrestler announcement  Adlib Generator
 
 Author:  Brian Livingston
 Editors: Brian Livingston 
@@ -11,31 +12,31 @@ int x = 300;
 String [] intro = {"Coming to the\nstage", "Hailing from\nOUTER darkness", "Entering the ring", "The GREAT\nfrom\nTrenton state"};
 String [] rep = {"the UNMERCIFUL", "the DESTROYER\n of worlds", "the CRUSHER\nof continants", "the MARSHAL\nof mayhem"};
 String [] name = {"LEE","TOD","BART","RALPH","PERSIVUL","MIKE","MARK",
-                  "PAUL","KATE","ERIC","CATHY", "RON", "RYAN", "JACK", "PHOEBE"};
+                  "PAUL","KATE","ERIC","CATHY", "RON", "RYAN", "JACK", "Phoebe"};
 
 String state;
-String howTo = ("Your a\nring announcer, (aspiring).\n " +
-     "You finally found\na venue that will let \nyou get some chops at your dream job." +
-     "You will be introducing people who \nhavnt made a name for themselves...literally." +
-     "If you can make them sound great\n your on your way." +
-     "You will be able to tell \nif you have done well because\n" +
-     "you will be asked to\n announce them as if they are\n" +
-     "the best the business has to offer." +
-     "if the crowd laughs then your introduction\n was so amazing that the persons\n" +
-     "parent given name will sound ridiculous." +
+String howTo1 = ("Your a ring announcer, (aspiring)." +
+     "You finally found a venue that will let you get some chops at your dream job." +
+     "You will be introducing people who havn't made a name for themselves...literally." +
+     "If you can make them sound great your on your way." +
+     "You will be able to tell if you have done well because" +
+     "you will be asked to announce them as if they are" +
+     "the best the business has to offer." );
+String howTo2 = ("if the crowd laughs then your introduction was so amazing that the persons" +
+     "given name will sound ridiculous." +
      "When the crowd laughs you get a point." +
-     "if you get 10 points\n you win the round." +
-     "There ars three rounds and you are competing against\n" +
-     "other anouncers." +
-     "Say the two prompts \nfrom the prompt screens and then finally the name." +
-     "Wait for laughter and if you get some\n you get a point." +
-     "The most points out of 10\n wins the round." +
-     "The most rounds won out of three\n wins the opportunity\n" +
-     "to work in as a real anouncer." +
+     "if you get 10 points you win the round." +
+     "There are three rounds and you are competing against" +
+     "other anouncers." );
+String howTo3 = ("Say the two prompts from the prompt screens and then finally the name." +
+     "Wait for laughter and if you get some you get a point." +
+     "The most points out of 10 wins the round." +
+     "The most rounds won out of three wins the opportunity" +
+     "to work as a real anouncer." +
      "May the best announcer win.");
 
-
-
+int o = 0;
+int f = 2;
 int r = 20;
 int g = 20;
 int b = 100;
@@ -60,8 +61,12 @@ void draw(){
   background(255);
   if(state == "Splash"){
     splashScreen();
-  }else if(state == "How"){
-    howToPlay();
+  }else if(state == "How1"){
+    howToPlay1();
+  }else if(state == "How2"){
+    howToPlay2();
+  }else if(state == "How3"){
+    howToPlay3();
   }else if(state == "Begin"){
     beginScreen();
   }else if(state == "Generate1"){
@@ -82,8 +87,13 @@ void draw(){
     rect(300,300,300,225);
     textAlign(CENTER);
     textSize(25);
-    fill(0);
+    strokeWeight(0);
+    fill(o);
     text("Tap to begin", 300,300);
+    o = o + f;
+    if((o >255) || (o < 0)){
+      f =-f;
+    }
     i = (int(random(4)));
     re = (int(random(4)));
     n = (int(random(14)));
@@ -100,12 +110,25 @@ void draw(){
     text("Special thanks\nto\nAhmed Clark\nJamar Sanderson", 300, 430);
   }
   
-  void howToPlay(){
+  void howToPlay1(){
     background(255);
     textSize(size);
-    //textAlign(CENTER);
     fill(57,255,255,120);
-    text(howTo,275,300,300,600);
+    text(howTo1,275,300,300,600);
+  }
+  
+  void howToPlay2(){
+    background(255);
+    textSize(size);
+    fill(57,255,255,120);
+    text(howTo2,275,300,300,600);
+  }
+  
+  void howToPlay3(){
+    background(255);
+    textSize(size);
+    fill(57,255,255,120);
+    text(howTo3,275,300,300,600);
   }
   
   void generate1(){
@@ -131,9 +154,16 @@ void draw(){
   
   void reset(){
     background(r,g,b,t);
+    //rect(300,300,300,300);
+    fill(71,53,72,150);
     text("Again?",x,300);
-    fill(255);
-    rect(300,100,100,100);
+    fill(o);
+    strokeWeight(6);
+    o =o+f;
+    if(o > 255 || o < 0){
+      f=-f;
+    }
+    
     if((mouseX > 300) && (mouseX < 400) && 
     (mouseY > 50) && (mouseY < 100)){
       state = "Begin";
@@ -144,8 +174,12 @@ void draw(){
   
   void mousePressed(){
     if(state == "Splash"){
-      state = "How";
-    }else if(state == "How"){
+      state = "How1";
+    }else if(state == "How1"){
+      state = "How2";
+    }else if(state == "How2"){
+      state = "How3";
+    }else if(state == "How3"){
       state = "Begin";
     }else if(state == "Begin"){
       state = "Generate1";
@@ -162,5 +196,5 @@ void draw(){
   }
   
   
-
-  
+ 
+      
