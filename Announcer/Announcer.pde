@@ -37,18 +37,20 @@ String howTo3 = ("Say the two prompts from the prompt screens and then finally t
      " to work as a real anouncer." +
      " May the best announcer win.");
 
-int o = 0;
-int f = 4;
-int r = 20;
-int g = 20;
-int b = 100;
-int t = 100;
+int o = 0;//opacity
+int f = 4;//fade
+int r = 20;//red
+int g = 20;//green
+int b = 100;//blue
+int t = 100;//transparency
 int size = 20;//used for size of text
+int jump = 25;
 
 //searches and selects randomly from arrays
 int i; //= (int(random(4)));
 int re; //= (int(random(4)));
 int n; //= (int(random(11)));
+int p = 0;
 
 void setup(){
   ring1 = loadImage("ring 1.jpg");
@@ -80,6 +82,7 @@ void draw(){
     generate2();
   }else if(state == "Generate3"){
     generate3();
+    pointKeep();
   }else if(state == "Reset"){
     reset(); 
   }
@@ -166,12 +169,29 @@ void draw(){
   }
   
   void generate3(){
+  fill(255);
   image(ring3,300,300,590,590);
   //background(255);
   textSize(size+100);
   textAlign(CENTER);
   text(name[n]+"!", x, 385);
-  fill(255);
+  textSize(jump);
+  text("Next Fighter",x,516);
+  if((mouseX > 227) && (mouseX < 376) && 
+    (mouseY > 498) && 
+    (mouseY < 521) && 
+    (mousePressed == true)){
+    state = "Begin";
+    //rect(215,317, 112,70);
+    }
+    else if((mouseX > 227) && (mouseX < 376) && 
+    (mouseY > 498) && 
+    (mouseY < 521)){
+    jump = 40;
+    }else
+    jump = 25;{
+      
+  }
   }
   
   void reset(){
@@ -193,8 +213,7 @@ void draw(){
     }
   
   }
-  
-  
+   
   void mousePressed(){
     if(state == "Splash"){
       state = "How1";
@@ -210,7 +229,41 @@ void draw(){
       state = "Generate2";
     }else if(state == "Generate2"){
       state = "Generate3";
-    }else if(state == "Generate3"){
-      state = "Reset";
+    //}else if(state == "Generate3"){
+      //state = "Reset";
       }
   }
+  
+  void pointKeep(){
+   strokeWeight(3);
+   rect(490,50,120,70);
+   fill(0);
+   textSize(25);
+   text("Score" + " " + p, 490, 40);
+   text("+", 448, 70);
+   text("-", 529, 70);
+ }
+  
+  void mouseClicked(){
+  if((mouseX > 438) && (mouseX < 455) && 
+    (mouseY > 53) && 
+    (mouseY < 68)) 
+    {
+    p++;
+    }if(p > 10){
+    p = 10; 
+  }
+ 
+  else if((mouseX > 523) && (mouseX < 535) && 
+    (mouseY > 53) && 
+    (mouseY < 68)) 
+    {
+    p--;
+    }if(p < 0){
+    p = 0;  
+    }
+  }
+  
+  
+  
+  
